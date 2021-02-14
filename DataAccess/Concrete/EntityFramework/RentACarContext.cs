@@ -6,11 +6,11 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    class NorthwindContext:DbContext
+     public class RentACarContext:DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=Northwind;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=RentACar;Trusted_Connection=true");
         }
 
         public DbSet<Car> Cars { get; set; }
