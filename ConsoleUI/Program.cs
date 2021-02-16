@@ -16,10 +16,21 @@ namespace ConsoleUI
             //GetAll(carManager);
             //GetByBrandId(carManager);
 
-            foreach (var carDetail in carManager.GetCarDetails())
+            var result = carManager.GetCarDetails();
+
+            if (result.Success == true)
             {
-                Console.WriteLine(carDetail.CarName + "-"+ carDetail.BrandName + "-" + carDetail.ColorName + "-" + carDetail.DailyPrice);
+                foreach (var carDetail in carManager.GetCarDetails().Data)
+                {
+                    Console.WriteLine(carDetail.CarName + "-" + carDetail.BrandName + "-" + carDetail.ColorName + "-" + carDetail.DailyPrice);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
+
 
             //brandManager.Add(new Brand {Name = "Yeşil" });
             //Console.WriteLine(brandManager.GetById(2).Name);
@@ -31,7 +42,7 @@ namespace ConsoleUI
 
         private static void GetByBrandId(CarManager carManager)
         {
-            foreach (var item in carManager.GetCarsByBrandId(1))
+            foreach (var item in carManager.GetCarsByBrandId(1).Data)
             {
                 Console.WriteLine(item.DailyPrice);
 
@@ -48,7 +59,7 @@ namespace ConsoleUI
 
         private static void GetAll(CarManager carManager)
         {
-            foreach (var car in carManager.GetAll())
+            foreach (var car in carManager.GetAll().Data)
             {
                 Console.WriteLine(car.DailyPrice);
             }
