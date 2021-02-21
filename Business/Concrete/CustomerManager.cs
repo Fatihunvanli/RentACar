@@ -9,7 +9,7 @@ using System.Text;
 
 namespace Business.Concrete
 {
-    class CustomerManager : ICustomerService
+    public class CustomerManager : ICustomerService
     {
         ICustomerDal _customerDal;
 
