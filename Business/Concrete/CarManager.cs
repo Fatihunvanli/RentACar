@@ -1,9 +1,13 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -18,20 +22,13 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
+        [ValidationAspect(typeof(CarValidator))]
         public IResult Add(Car car)
         {
             //bussiness code şartlarımız olur ona göre ekleriz veya eklemeyiz.iş kodları yetkisi var mı ?
-            if (car.DailyPrice>0)
-            {
-                _carDal.Add(car);
-            }
-
-            if (car.CarName.Length < 2)
-            {
-                //magic strings
-                return new ErrorResult(Messages.CarNameInvalid);
-            }
-
+            //ValidationTool.Validate(new CarValidator(), car);
+                
+            _carDal.Add(car);
 
             return new Result(true,Messages.CarAdded);
         }
