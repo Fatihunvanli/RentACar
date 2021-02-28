@@ -22,5 +22,8 @@ namespace Business.Constants
         internal static string AddedCustomer;
         internal static string DeletedCustomer;
         internal static string UpdatedCustomer;
+        internal static string FailAddedImageLimit;
+        internal static string CarImageAdded;
+        internal static string DeletedCarImage;
     }
 }
